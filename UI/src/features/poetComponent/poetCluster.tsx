@@ -7,7 +7,7 @@ export const PoetCluster = ({ onClick }: { onClick?: any }) => {
   const { result } = useAppSelector(selectResult);
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" width={630}>
+    <Box display="flex" justifyContent="center" alignItems="center" width={700}>
       <Stack
         spacing={1}
         sx={{

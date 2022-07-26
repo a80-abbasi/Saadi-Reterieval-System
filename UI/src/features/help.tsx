@@ -12,7 +12,7 @@ const MyRow = ({ text }: { text: string }) => {
 };
 export const Help = () => {
   return (
-    <Box sx={{ maxWidth: 600, bgcolor: "#b0bec5", p: 2, borderRadius: 5 }}>
+    <Box sx={{ maxWidth: 670, bgcolor: "#b0bec5", p: 2, borderRadius: 5 }}>
       <Stack spacing={1} alignItems="flex-start">
         <MyRow text="این صفحه یک دمو از برنامه بازیابی اطلاعات برای اشعار و متون کتاب های بوستان و گلستان است." />
         <MyRow text="برای انجام جستجو کافیست تا عبارت مورد نظر خود را در مستطیل بالا وارد کنید و گزینه مورد نظر خود را انتخاب کنید." />
