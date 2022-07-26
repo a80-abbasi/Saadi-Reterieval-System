@@ -1,11 +1,20 @@
 import json
 import requests
+from Utils.Utils import all_data, boostan_data
 
 
 class ElasticSearch:
-    def __init__(self, url):
+    def __init__(self, url, index_name, Golestan=False):
+        if Golestan:
+            self.data = list(all_data)
+        else:
+            self.data = list(boostan_data['poem'])
         self.base_url = url
         self.headers = {'Content-type': 'application/json'}
+        if not self.check_exists(index_name):
+            self.delete_index(index_name)
+            self.create_index(index_name)
+            self.bulk(self.data, index_name)
 
     def check_exists(self, index_name):
         code = requests.head(url=self.base_url + index_name).status_code
