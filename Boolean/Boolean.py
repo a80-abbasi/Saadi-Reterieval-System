@@ -19,7 +19,7 @@ class Boolean:
                 self.data = boostan_data
 
         self.tf = CountVectorizer(analyzer=lambda x: sent_pre_process(x, remove_stopwords=True))
-        bool_data = self.tf.fit_transform(self.data)
+        bool_data = self.tf.fit_transform(self.data['poem'])
         self.bool_data = bool_data.toarray().astype(bool)
 
     def get_vectors(self):
