@@ -69,7 +69,10 @@ class Clustering:
 
         data = self.tfidf.data.copy()
         data['cluster'] = self.kmeans.predictions
-        self.clusters = data.groupby('cluster').apply(lambda x: x['poem'].to_numpy())
+        self.clusters = data.groupby('cluster').apply(self._f)
+
+    def _f(self, x):
+        return x['poem'].to_numpy()
 
     def predict_cluster(self, query):
         query_tfidf = self.tfidf.tfidf.transform([query]).toarray()[0]

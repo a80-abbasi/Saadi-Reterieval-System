@@ -17,9 +17,12 @@ class TFIDF:
             else:
                 self.data = boostan_data
 
-        self.tfidf = TfidfVectorizer(analyzer=lambda x: sent_pre_process(x, remove_stopwords=True))
+        self.tfidf = TfidfVectorizer(analyzer=self._analyzer)
         tfidf_data = self.tfidf.fit_transform(self.data['poem'])
         self.tfidf_data = tfidf_data.toarray()
+
+    def _analyzer(self, x):
+        return sent_pre_process(x, remove_stopwords=True)
 
     def get_vectors(self):
         return self.tfidf_data

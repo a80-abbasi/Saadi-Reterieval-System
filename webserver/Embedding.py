@@ -26,7 +26,7 @@ class my_word2vec:
         else:
             self.data = boostan_data['poem']
 
-        self.tf = CountVectorizer(analyzer=lambda x: sent_pre_process(x, remove_stopwords=True))
+        self.tf = CountVectorizer(analyzer=self._analyzer)
         self.tf_data = self.tf.fit_transform(self.data)
         self.tf_data = self.tf_data.toarray().astype(bool)
         self.idf = TfidfTransformer(smooth_idf=True, use_idf=True)
@@ -36,6 +36,9 @@ class my_word2vec:
         self.idf_dataframe.head()
         x = pre_process(self.data, remove_stopwords=True)
         self.model = Word2Vec(x)
+
+    def _analyzer(self, x):
+        return sent_pre_process(x, remove_stopwords=True)
 
     def get_most_similar_word_to_word(self, word):
         return self.model.wv.most_similar(word)

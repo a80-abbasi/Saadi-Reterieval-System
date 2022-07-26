@@ -10,17 +10,20 @@ class Classification:
     def __init__(self):
         self.vectorizer = TfidfVectorizer(strip_accents='unicode',
                                           analyzer='char',
-                                          preprocessor=lambda x: ' '.join(
-                                              sent_pre_process(x, normalize=False, remove_stopwords=True,
-                                                               lemmatize=False)),
-                                          ngram_range=(2, 6), min_df=4, max_features=15000)
+                                          preprocessor=self._preprocessor,
+                                          ngram_range=(2, 6),
+                                          min_df=4,
+                                          max_features=15000)
         self.data = boostan_data
         self.X_train = boostan_data['poem']
         self.y_train = boostan_data['chapter']
         self.classifier = LinearSVC(class_weight='balanced')
         self.fit(self.X_train, self.y_train)
 
-    def predict(self, poems):
+    def _preprocessor(self, x):
+        return ' '.join(sent_pre_process(x, normalize=False, remove_stopwords=True, lemmatize=False))
+
+    def search(self, poems, k):
         return self.classifier.predict(self.vectorizer.transform(poems))
 
     def fit(self, X_train, y_train):
@@ -29,4 +32,3 @@ class Classification:
 
     def evaluation(self, X_test, y_test):
         return classification_report(y_test, self.predict(X_test), output_dict=True)
-
