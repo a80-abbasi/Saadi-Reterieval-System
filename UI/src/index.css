@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+@font-face {
+  font-family: "Lalezar-Regular";
+  src: local("Lalezar-Regular"),
+    url("./assets/fonts/Lalezar-Regular.ttf") format("truetype");
+  /* font-weight: bold; */
+}
+@font-face {
+  font-family: "IranNastaliq";
+  src: local("IranNastaliq"),
+    url("./assets/fonts/IranNastaliq.ttf") format("truetype");
+  /* font-weight: bold; */
+}
+@font-face {
+  font-family: "B-NAZANIN";
+  src: local("B-NAZANIN"),
+    url("./assets/fonts/B-NAZANIN.ttf") format("truetype");
+  /* font-weight: bold; */
+}
