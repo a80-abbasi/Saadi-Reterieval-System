@@ -15,9 +15,11 @@ services = {
     'tfidf': get_tfidf(Golestan=True),
     # 'transformer': get_transformer(Golestan=True),
     # 'fasttext': get_embedding(Golestan=True),
-    # 'classification':,
+    'classification': get_classification(),
+    
     'clustering': get_clustering(),
-    'linkanalysis': get_link_analysis()
+    'linkanalysis': get_link_analysis(),
+    'expansion': get_query_expansion()
 }
 
 
@@ -26,7 +28,10 @@ def search():
     try:
         method = request.args.get('method')
         query = request.args.get('query')
-        n = int(request.args.get('n'))
+        if request.args.get('n'):
+            n = int(request.args.get('n'))
+        else:
+            n = 0
 
         result = services[method].search(query=query, k=n)
         output = {
@@ -79,6 +84,27 @@ def linkanalysis():
         output = f'Error: {str(e)}'
 
     return output
+
+
+@app.route("/expansion", methods=['GET'])
+def query_expansion():
+    try:
+        query = request.args.get('query')
+        service = services['expansion']
+
+        correct = service.correct_spell_error(query)
+        next_word = service.suggest(correct)
+
+        output = {"result": f'{correct} + {next_word}'}
+    except Exception as e:
+        output = f'Error: {str(e)}'
+
+    return output
+
+
+@app.rout("/classification", methods=['GET'])
+def classification():
+    return 'under developement!'
 
 
 if __name__ == "__main__":
