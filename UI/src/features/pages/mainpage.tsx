@@ -14,6 +14,7 @@ import { selectMenu } from "../../app/menuReducer";
 import { selectResult } from "../../app/resultReducer";
 import { ClusterGrid } from "../poetComponent/clusterGrid";
 import { ClusterModal } from "../poetComponent/clusterModal";
+import { LinkAnalysis } from "../top menu/link";
 export const MainPage = () => {
   const menu = useAppSelector(selectMenu);
   const resultState = useAppSelector(selectResult);
@@ -27,25 +28,28 @@ export const MainPage = () => {
         backgroundImage: `linear-gradient(to top,rgba(245, 90, 242, 0.42),rgba(117, 19, 93, 0.63)), url(${background})`,
       }}
     >
-      <Stack spacing={2} sx={{ pt:2 }} alignItems="center">
+      <Stack spacing={2} sx={{ pt: 2 }} alignItems="center">
         <img src={`${text}`} width="200" alt={"sda"} loading="lazy" />
         <Stack alignItems="center">
           <Stack
             direction="row"
             spacing={0.5}
             justifyContent="space-around"
-            sx={{ width: 655 }}
+            sx={{ width: 735 }}
           >
             <SearchBox />
             <ClusterCheckBox />
           </Stack>
           {menu.clusterAnimation ? null : (
             <div className={`Modal ${menu.cluster ? "close" : "open"}`}>
-              <NormalOptions />
+              <Stack>
+                <NormalOptions />
+                <LinkAnalysis />
+              </Stack>
             </div>
           )}
         </Stack>
-        {menu.clusterAnimation && resultState.result.length > 0  ? (
+        {menu.clusterAnimation && resultState.result.length > 0 ? (
           <ClusterGrid />
         ) : resultState.result.length > 0 ? (
           <PoetCluster />
@@ -53,8 +57,7 @@ export const MainPage = () => {
           <Help />
         )}
       </Stack>
-      <ClusterModal/>
-
+      <ClusterModal />
     </Container>
   );
 };

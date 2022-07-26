@@ -1,12 +1,11 @@
 import random
 import numpy as np
-from TFIDF import TFIDF
 from scipy.spatial.distance import cdist  # used to get distance matrix
+from ModuleCreator import *
 
 
 def get_distance_matrix(x: np.ndarray, y: np.ndarray) -> np.ndarray:
     return cdist(x, y, 'euclidean') ** 2
-
 
 class K_means:
 
@@ -22,7 +21,7 @@ class K_means:
         centers[0] = random.choice(self.data)
         for i in range(1, self.number_of_clusters):
             centers[i] = \
-            random.choices(self.data, weights=np.amin(get_distance_matrix(centers[:i], self.data), axis=0))[0]
+                random.choices(self.data, weights=np.amin(get_distance_matrix(centers[:i], self.data), axis=0))[0]
         return centers
 
     def fit(self, max_number_of_iteration):
@@ -62,7 +61,7 @@ class K_means:
 class Clustering:
 
     def __init__(self, poem_based=False):
-        self.tfidf = TFIDF(False, poem_based)
+        self.tfidf = get_tfidf(False, poem_based)
 
         number_of_clusters = 11
         self.kmeans = K_means(self.tfidf.tfidf_data, number_of_clusters)

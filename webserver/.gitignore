@@ -40,6 +40,9 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+#resources git ignore
+*.pickle
+
 # Unit test / coverage reports
 htmlcov/
 .tox/

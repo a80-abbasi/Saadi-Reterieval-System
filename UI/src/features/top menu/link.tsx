@@ -1,15 +1,8 @@
 import { Typography, Button, Box, Stack } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectMenu, setEngineStatus } from "../../app/menuReducer";
-const buttonList = [
-  "tfidf",
-  "fasttext",
-  "boolean",
-  "transformer",
-  "elastic",
-  "classification",
-];
-export const NormalOptions = () => {
+const buttonList = ["HITS", "Page Rank"];
+export const LinkAnalysis = () => {
   const { enginStatus } = useAppSelector(selectMenu);
   const dispatch = useAppDispatch();
 
@@ -43,7 +36,7 @@ export const NormalOptions = () => {
       </Button>
     );
   };
-  const changeEnginStatus = (type: string) => {
+  const changeLink = (type: string) => {
     dispatch(setEngineStatus(type));
   };
   return (
@@ -67,7 +60,7 @@ export const NormalOptions = () => {
               text={item}
               type={item}
               enginStatus={enginStatus}
-              onClick={changeEnginStatus}
+              onClick={changeLink}
             />
           );
         })}

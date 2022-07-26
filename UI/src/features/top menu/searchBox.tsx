@@ -11,23 +11,51 @@ import DirectionsIcon from "@mui/icons-material/Directions";
 import { selectMenu, setSearch } from "../../app/menuReducer";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setResult } from "../../app/resultReducer";
+import { clustringText, searchText } from "../../logic/controller";
 
 export function SearchBox() {
   const menu = useAppSelector(selectMenu);
   const dispatch = useAppDispatch();
-  const search = () => {
-    let result = [
-      {
-        text: "با جوانی سر خوش است این پیر بی تدبیر را جهل باشد با جوانان پنجه کردن پیر را",
-      },
-      { text: "روز بازار جوانی پنج روزی بیش نیست نقد را باش اي پسر کآفت بود تأخیر را       " },
-      {
-        text: "اي که گفتی دیده از دیدار بت رویان بدوز هر چه گویی چاره دانم کرد جز تقدیر را",
-      },
-      {
-        text: "زهد پیدا کفر پنهان بود چندین روزگار  پرده از سر برگرفتیم آن همه ی تزویر را",
-      },
-    ];
+  const search = async () => {
+    let result;
+    if (menu.cluster) {
+      // const data = await clustringText("search" , menu.search)
+      result = [
+        {
+          text: "جواب با سرچ کردن",
+        },
+        {
+          text: "جواب با سرچ کردن",
+        },
+        {
+          text: "جواب با سرچ کردن",
+        },
+        {
+          text: "جواب با سرچ کردن",
+        },
+        {
+          text: "جواب با سرچ کردن",
+        },
+      ];
+    } else {
+      if (menu.enginStatus == "Page Rank" || menu.enginStatus == "HITS") return 
+        // const data = await searchText(menu.search , menu.enginStatus)
+        result = [
+          {
+            text: "با جوانی سر خوش است این پیر بی تدبیر را جهل باشد با جوانان پنجه کردن پیر را",
+          },
+          {
+            text: "روز بازار جوانی پنج روزی بیش نیست نقد را باش اي پسر کآفت بود تأخیر را       ",
+          },
+          {
+            text: "اي که گفتی دیده از دیدار بت رویان بدوز هر چه گویی چاره دانم کرد جز تقدیر را",
+          },
+          {
+            text: "زهد پیدا کفر پنهان بود چندین روزگار  پرده از سر برگرفتیم آن همه ی تزویر را",
+          },
+        ];
+    }
+
     dispatch(setResult(result));
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +64,7 @@ export function SearchBox() {
 
   return (
     <Paper
-      sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 455 }}
+      sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 505 }}
     >
       {/* <IconButton sx={{ p: "10px" }} aria-label="menu">
         <MenuIcon />
@@ -50,7 +78,7 @@ export function SearchBox() {
           ml: 1,
           flex: 1,
           "& input::placeholder": {
-            fontFamily:"Lalezar-Regular"
+            fontFamily: "Lalezar-Regular",
           },
         }}
         placeholder={"جستجو کنید"}

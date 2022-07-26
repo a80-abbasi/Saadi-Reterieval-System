@@ -5,14 +5,22 @@ export interface MenuState {
   search: string;
   cluster: boolean;
   clusterAnimation: boolean;
-  enginStatus: "opt1" | "opt2" | "opt3" | "opt4" | "opt5";
+  enginStatus:
+    | "tfidf"
+    | "fasttext"
+    | "boolean"
+    | "transformer"
+    | "elastic"
+    | "classification"
+    | "HITS"
+    | "Page Rank";
 }
 
 const initialState: MenuState = {
   search: "",
   cluster: false,
   clusterAnimation: false,
-  enginStatus: "opt1",
+  enginStatus: "tfidf",
 };
 
 export const menuSlice = createSlice({
