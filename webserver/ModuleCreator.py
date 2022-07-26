@@ -1,5 +1,5 @@
 import os.path
-import numpy as np
+import pickle
 
 from webserver.Boolean import Boolean
 from webserver.TFIDF import TFIDF
@@ -16,9 +16,12 @@ def get_boolean(Golestan=False, poem_based=False):
     name += '.npy'
     path = resources_path + name
     if os.path.isfile(path):
-        return np.load(path)
+        pickle_in = open(path, "rb")
+        return pickle.load(pickle_in)
     else:
-        return Boolean(Golestan, poem_based)
+        boolean = Boolean(Golestan, poem_based)
+        pickle_out = open(path, "wb")
+        pickle.dump(boolean, pickle_out)
 
 
 def get_tfidf(Golestan=False, poem_based=False):
@@ -30,18 +33,10 @@ def get_tfidf(Golestan=False, poem_based=False):
     name += '.npy'
     path = resources_path + name
     if os.path.isfile(path):
-        return np.load(path)
+        pickle_in = open(path, "rb")
+        return pickle.load(pickle_in)
     else:
-        return TFIDF(Golestan, poem_based)
-
-
-def get_clustering(poem_based=False):
-    name = 'tfidf'
-    if poem_based:
-        name += '_poem_based'
-    name += '.npy'
-    path = resources_path + name
-    if os.path.isfile(path):
-        return np.load(path)
-    else:
-        return TFIDF(Golestan, poem_based)
+        tfidf = TFIDF(Golestan, poem_based)
+        pickle_out = open(path, "wb")
+        pickle.dump(tfidf, pickle_out)
+        return tfidf
