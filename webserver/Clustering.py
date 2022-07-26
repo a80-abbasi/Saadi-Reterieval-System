@@ -1,4 +1,4 @@
-from TFIDF.TFIDF import TFIDF
+from webserver.TFIDF import TFIDF
 
 import numpy as np
 from scipy.spatial.distance import cdist  # used to get distance matrix

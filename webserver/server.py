@@ -1,7 +1,7 @@
 from flask import Flask, request
-from Elasticsearch.Elasticsearch import ElasticSearch
-from Boolean.Boolean import Boolean
-from TFIDF.TFIDF import TFIDF
+from webserver.Elasticsearch import ElasticSearch
+from webserver.Boolean import Boolean
+from webserver.TFIDF import TFIDF
 
 PORT = 8080
 DEBUG = True

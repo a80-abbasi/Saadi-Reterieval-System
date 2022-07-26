@@ -1,5 +1,5 @@
-from PreProcess.PreProcess import pre_process
-from PreProcess.PreProcess import bi_sent_pre_process
+from webserver.PreProcess import pre_process
+from webserver.PreProcess import bi_sent_pre_process
 from Utils.Utils import all_data
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
