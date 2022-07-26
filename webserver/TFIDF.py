@@ -4,7 +4,6 @@ from Utils import boostan_data, beit_based_all, poem_based_boostan, poem_based_a
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
-
 class TFIDF:
     def __init__(self, Golestan=False, poem_based=False):
         if poem_based:

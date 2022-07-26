@@ -1,5 +1,5 @@
 import numpy as np
-from PreProcess import pre_process
+from PreProcess import pre_process, sent_pre_process
 from PreProcess import bi_sent_pre_process
 from Utils import all_data
 from parsivar import SpellCheck
@@ -15,10 +15,12 @@ class QueryExpansion:
         x = self.vectorizer.fit_transform(self.processed_data)
         self.bi_counter = x.toarray()
         self.bi_counter = np.sum(self.bi_counter, axis=0)
+        self.my_checker = SpellCheck()
         ind = np.unravel_index(np.argmax(self.bi_counter, axis=None), self.bi_counter.shape)
         self.vectorizer.get_feature_names()
 
     def suggest(self, query):
+        query = sent_pre_process(query)
         bi_words = self.vectorizer.get_feature_names()
         max_count = 0
         best_word = ''
@@ -30,5 +32,4 @@ class QueryExpansion:
         return best_word
 
     def correct_spell_error(self, query):
-        my_checker = SpellCheck()
-        return my_checker.spell_corrector(query)
+        return self.my_checker.spell_corrector(query)

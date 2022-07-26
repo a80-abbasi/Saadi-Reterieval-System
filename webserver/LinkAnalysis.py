@@ -1,12 +1,10 @@
 import numpy as np
 import networkx as nx
 
-from webserver.TFIDF import TFIDF
-
 
 class LinkAnalysis:
     def __init__(self):
-        self.tfidf = TFIDF(False, False)
+        self.tfidf = get_tfidf(False, False)
 
         similarity_matrix = np.matmul(self.tfidf.tfidf_data, self.tfidf.tfidf_data.T)
         threshold = 0.3
