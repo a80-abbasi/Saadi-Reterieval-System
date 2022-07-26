@@ -1,7 +1,11 @@
+from logging import raiseExceptions
 from flask import Flask, request
 from Elasticsearch import ElasticSearch
 from Boolean import Boolean
 from TFIDF import TFIDF
+from LinkAnalysis import LinkAnalysis
+from Clustering import Clustering
+
 
 PORT = 8080
 DEBUG = True
@@ -14,7 +18,9 @@ services = {
     'tfidf': TFIDF(),
     # 'transformer':
     # 'fasttext':
-    # 'classification':
+    # 'classification':,
+    'clustering': Clustering(),
+    'linkanalysis': LinkAnalysis()
 }
 
 
@@ -37,12 +43,45 @@ def search():
 
 @app.route("/clustering", methods=['GET'])
 def clustering():
-    pass
+    try:
+        method = request.args.get('method')
+        query = request.args.get('query')
+        service = services['clustering']
+
+        if method == 'all':
+            output = dict()
+            clusters = service.get_clusters()
+            # print(clusters)
+            for i in range(len(clusters)):
+                output[f'class{i}'] = list(clusters[i])
+        elif method == 'search':
+            _, prediction = service.predict_cluster(query)
+            output = {'class': list(prediction)}
+        else:
+            raiseExceptions()
+    except Exception as e:
+        output = f'Error: {str(e)}'
+
+    return output
 
 
 @app.route("/linkanalysis", methods=['GET'])
 def linkanalysis():
-    pass
+    try:
+        method = request.args.get('method')
+        n = int(request.args.get('n'))
+        service = services['linkanalysis']
+
+        if method == 'hits':
+            output = {'authority': service.get_authority_hubs_results(k=n)}
+        elif method == 'page rank':
+            output = {'nodes': service.get_pagerank_results(k=n)}
+        else:
+            raiseExceptions()
+    except Exception as e:
+        output = f'Error: {str(e)}'
+
+    return output
 
 
 if __name__ == "__main__":

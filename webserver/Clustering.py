@@ -78,4 +78,4 @@ class Clustering:
         return i, self.clusters[i]
 
     def get_clusters(self):
-        return self.clusters
+        return list(self.clusters)

@@ -1,7 +1,6 @@
 import numpy as np
 import networkx as nx
-
-from webserver.TFIDF import TFIDF
+from TFIDF import TFIDF
 
 
 class LinkAnalysis:
