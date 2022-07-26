@@ -120,3 +120,5 @@ def get_query_expansion():
         pickle_out = open(path, 'wb')
         pickle.dump(query_extender, pickle_out)
         return query_extender
+
+print(get_transformer(True).search('به نام خداوند جان و خرد'))
