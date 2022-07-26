@@ -1,3 +1,4 @@
+import os
 from logging import raiseExceptions
 from flask import Flask, request
 from Elasticsearch import ElasticSearch
@@ -5,12 +6,20 @@ from ModuleCreator import *
 from TFIDF import get_tfidf
 
 
+# constants
 PORT = 8080
 DEBUG = True
 ELASTIC_HOST = 'http://localhost:9200/'
 
+# web server app
 app = Flask(__name__)
 
+# build a directory to save files
+path = '../resources/saved-models/'
+if not os.path.exists(path):
+    os.makedirs(path)
+
+# services of the web server
 services = {
     'elastic': ElasticSearch(url=ELASTIC_HOST, Golestan=True),
     'boolean': get_boolean(Golestan=True),
@@ -18,13 +27,18 @@ services = {
     # 'transformer': get_transformer(Golestan=True),
     # 'fasttext': get_embedding(Golestan=True),
     'classification': get_classification(),
-    
+
     'clustering': get_clustering(),
     'linkanalysis': get_link_analysis(),
     'expansion': get_query_expansion()
 }
 
+print('service initialization done!')
 
+
+#####################################
+#   below are provided URLs         #
+#####################################
 @app.route("/search", methods=['GET'])
 def search():
     try:

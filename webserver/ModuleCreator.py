@@ -10,7 +10,7 @@ from LinkAnalysis import LinkAnalysis
 from QueryExpansion import QueryExpansion
 from Classification import Classification
 
-resources_path = '../resources/'
+resources_path = '../resources/saved-models/'
 
 
 def get_boolean(Golestan=False, poem_based=False):

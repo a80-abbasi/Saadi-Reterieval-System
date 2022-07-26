@@ -5,7 +5,7 @@ from PreProcess import sent_pre_process
 from sklearn.feature_extraction.text import TfidfVectorizer
 from Utils import boostan_data, beit_based_all, poem_based_boostan, poem_based_all
 
-resources_path = '../resources/'
+resources_path = '../resources/saved-models/'
 
 
 class TFIDF:
