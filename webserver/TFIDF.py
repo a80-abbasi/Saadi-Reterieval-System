@@ -1,8 +1,8 @@
-from webserver.PreProcess import sent_pre_process
-from webserver.Utils import boostan_data, beit_based_all, poem_based_boostan, poem_based_all
-
-from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
+from PreProcess import sent_pre_process
+from Utils import boostan_data, beit_based_all, poem_based_boostan, poem_based_all
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 
 
 class TFIDF:

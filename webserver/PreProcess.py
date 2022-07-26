@@ -1,7 +1,7 @@
 from hazm import *
-from webserver.Utils import punctuations
-from webserver.Utils import replace_dict
-from webserver.Utils import stopwords
+from Utils import punctuations
+from Utils import replace_dict
+from Utils import stopwords
 
 normalizer = Normalizer()
 stemmer = Stemmer()
