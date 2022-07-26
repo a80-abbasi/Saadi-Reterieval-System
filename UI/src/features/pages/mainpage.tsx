@@ -16,7 +16,7 @@ import { ClusterGrid } from "../poetComponent/clusterGrid";
 import { ClusterModal } from "../poetComponent/clusterModal";
 import { LinkAnalysis } from "../top menu/link";
 export const MainPage = () => {
-  const menu = useAppSelector(selectMenu);
+  const menu: any = useAppSelector(selectMenu);
   const resultState = useAppSelector(selectResult);
   // const [hideMenu, setHideMenu] = React.useState(false);
 

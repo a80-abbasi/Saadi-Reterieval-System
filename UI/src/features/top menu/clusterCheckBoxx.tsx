@@ -15,7 +15,7 @@ import { setResult } from "../../app/resultReducer";
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export const ClusterCheckBox = () => {
-  const menu = useAppSelector(selectMenu);
+  const menu:any = useAppSelector(selectMenu);
   const dispatch = useAppDispatch();
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {

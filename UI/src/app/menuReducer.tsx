@@ -23,7 +23,7 @@ const initialState: MenuState = {
   enginStatus: "tfidf",
 };
 
-export const menuSlice = createSlice({
+export const menuSlice: any = createSlice({
   name: "menu",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions

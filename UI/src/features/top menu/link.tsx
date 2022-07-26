@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectMenu, setEngineStatus } from "../../app/menuReducer";
 const buttonList = ["HITS", "Page Rank"];
 export const LinkAnalysis = () => {
-  const { enginStatus } = useAppSelector(selectMenu);
+  const { enginStatus }:any = useAppSelector(selectMenu);
   const dispatch = useAppDispatch();
 
   const MyButton = ({
