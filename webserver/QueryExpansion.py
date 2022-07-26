@@ -1,9 +1,9 @@
-from webserver.PreProcess import pre_process
-from webserver.PreProcess import bi_sent_pre_process
-from webserver.Utils import all_data
-from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
+from PreProcess import pre_process
+from PreProcess import bi_sent_pre_process
+from Utils import all_data
 from parsivar import SpellCheck
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 class QueryExpansion:

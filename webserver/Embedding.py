@@ -1,5 +1,5 @@
-from gensim.models import Word2Vec
 import itertools
+from gensim.models import Word2Vec
 
 def get_all_words(document):
     all_words = {}

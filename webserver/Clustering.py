@@ -1,8 +1,7 @@
-from webserver.TFIDF import TFIDF
-
-import numpy as np
-from scipy.spatial.distance import cdist  # used to get distance matrix
 import random
+import numpy as np
+from TFIDF import TFIDF
+from scipy.spatial.distance import cdist  # used to get distance matrix
 
 
 def get_distance_matrix(x: np.ndarray, y: np.ndarray) -> np.ndarray:

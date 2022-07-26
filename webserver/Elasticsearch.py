@@ -1,10 +1,10 @@
 import json
 import requests
-from webserver.Utils import all_data, boostan_data
+from Utils import all_data, boostan_data
 
 
 class ElasticSearch:
-    def __init__(self, url, index_name, Golestan=False):
+    def __init__(self, url, index_name='ir-saadi', Golestan=False):
         if Golestan:
             self.data = list(all_data)
         else:
@@ -58,14 +58,14 @@ class ElasticSearch:
             else:
                 print(f'index \"{index_name}\" created successfully.')
 
-    def search(self, query, index_name, size=5):
+    def search(self, query, index_name='ir-saadi', k=5):
         q = {
             "query": {
                 "match": {
                     "content": f'\"{query}\"'
                 }
             },
-            "size": size
+            "size": k
         }
         q = json.dumps(q)
 
@@ -75,8 +75,8 @@ class ElasticSearch:
 
         results = []
         for out in body['hits']['hits']:
-            res = out['_source']
-            res['score'] = out['_score']
+            res = out['_source']['content']
+            # res['score'] = out['_score']
             results.append(res)
 
         return results
