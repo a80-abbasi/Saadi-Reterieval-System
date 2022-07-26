@@ -2,6 +2,8 @@ from logging import raiseExceptions
 from flask import Flask, request
 from Elasticsearch import ElasticSearch
 from ModuleCreator import *
+from TFIDF import get_tfidf
+
 
 PORT = 8080
 DEBUG = True
@@ -53,7 +55,6 @@ def clustering():
         if method == 'all':
             output = dict()
             clusters = service.get_clusters()
-            # print(clusters)
             for i in range(len(clusters)):
                 output[f'class{i}'] = list(clusters[i])
         elif method == 'search':
@@ -95,14 +96,14 @@ def query_expansion():
         correct = service.correct_spell_error(query)
         next_word = service.suggest(correct)
 
-        output = {"result": f'{correct} + {next_word}'}
+        output = {"result": f'{correct} {next_word}'}
     except Exception as e:
         output = f'Error: {str(e)}'
 
     return output
 
 
-@app.rout("/classification", methods=['GET'])
+@app.route("/classification", methods=['GET'])
 def classification():
     return 'under developement!'
 

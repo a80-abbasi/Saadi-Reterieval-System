@@ -23,8 +23,8 @@ class Classification:
     def _preprocessor(self, x):
         return ' '.join(sent_pre_process(x, normalize=False, remove_stopwords=True, lemmatize=False))
 
-    def search(self, poems, k):
-        return self.classifier.predict(self.vectorizer.transform(poems))
+    def search(self, query, k):
+        return self.classifier.predict(self.vectorizer.transform(query))
 
     def fit(self, X_train, y_train):
         X_train_tfidf = self.vectorizer.fit_transform(X_train)

@@ -1,5 +1,6 @@
 import numpy as np
 import networkx as nx
+from TFIDF import get_tfidf
 
 
 class LinkAnalysis:

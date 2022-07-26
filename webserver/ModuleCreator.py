@@ -28,28 +28,11 @@ def get_boolean(Golestan=False, poem_based=False):
         boolean = Boolean(Golestan, poem_based)
         pickle_out = open(path, "wb")
         pickle.dump(boolean, pickle_out)
-
-
-def get_tfidf(Golestan=False, poem_based=False):
-    name = 'tfidf'
-    if Golestan:
-        name += '_Golestan'
-    if poem_based:
-        name += '_poem_based'
-    name += '.npy'
-    path = resources_path + name
-    if os.path.isfile(path):
-        pickle_in = open(path, "rb")
-        return pickle.load(pickle_in)
-    else:
-        tfidf = TFIDF(Golestan, poem_based)
-        pickle_out = open(path, "wb")
-        pickle.dump(tfidf, pickle_out)
-        return tfidf
+        return boolean
 
 
 def get_clustering(poem_based=False):
-    name = 'tfidf'
+    name = 'clustring'
     if poem_based:
         name += '_poem_based'
     name += '.pickle'
@@ -110,7 +93,7 @@ def get_transformer(Golestan=False):
 
 
 def get_query_expansion():
-    name = 'transformer'
+    name = 'query_expansion'
     name += '.pickle'
     path = resources_path + name
     if os.path.isfile(path):

@@ -1,12 +1,14 @@
 import random
 import numpy as np
-from scipy.spatial.distance import cdist  # used to get distance matrix
+from scipy.spatial.distance import cdist
+from TFIDF import get_tfidf
+
 
 def get_distance_matrix(x: np.ndarray, y: np.ndarray) -> np.ndarray:
     return cdist(x, y, 'euclidean') ** 2
 
-class K_means:
 
+class K_means:
     def __init__(self, data: np.ndarray, number_of_clusters):
         self.data: np.ndarray = data
         self.number_of_clusters = number_of_clusters
@@ -19,14 +21,16 @@ class K_means:
         centers[0] = random.choice(self.data)
         for i in range(1, self.number_of_clusters):
             centers[i] = \
-                random.choices(self.data, weights=np.amin(get_distance_matrix(centers[:i], self.data), axis=0))[0]
+                random.choices(self.data, weights=np.amin(
+                    get_distance_matrix(centers[:i], self.data), axis=0))[0]
         return centers
 
     def fit(self, max_number_of_iteration):
         predictions = None
         centers = self.kmeans_plus_plus()
         for i in range(max_number_of_iteration):
-            predictions = get_distance_matrix(centers, self.data).argmin(axis=0)
+            predictions = get_distance_matrix(
+                centers, self.data).argmin(axis=0)
             prev_centers = centers.copy()
             for j in range(self.number_of_clusters):
                 cluster_j = self.data[predictions == j]
@@ -44,7 +48,8 @@ class K_means:
         return np.amin(get_distance_matrix(self.centers, self.data), axis=0).sum()
 
     def get_purity(self, labels):
-        assert self.n == len(labels), "Number of labels must be equal to number of data"
+        assert self.n == len(
+            labels), "Number of labels must be equal to number of data"
         intersection = 0
         for j in range(self.number_of_clusters):
             j_labels = labels[self.predictions == j]
@@ -57,7 +62,6 @@ class K_means:
 
 
 class Clustering:
-
     def __init__(self, poem_based=False):
         self.tfidf = get_tfidf(False, poem_based)
 

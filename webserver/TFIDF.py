@@ -1,7 +1,11 @@
+import pickle
+import os.path
 import numpy as np
 from PreProcess import sent_pre_process
-from Utils import boostan_data, beit_based_all, poem_based_boostan, poem_based_all
 from sklearn.feature_extraction.text import TfidfVectorizer
+from Utils import boostan_data, beit_based_all, poem_based_boostan, poem_based_all
+
+resources_path = '../resources/'
 
 
 class TFIDF:
@@ -33,3 +37,21 @@ class TFIDF:
         args = np.argsort(scores)[::-1]
         k_args = args[:k]
         return self.data.poem.to_numpy()[k_args]
+
+
+def get_tfidf(Golestan=False, poem_based=False):
+    name = 'tfidf'
+    if Golestan:
+        name += '_Golestan'
+    if poem_based:
+        name += '_poem_based'
+    name += '.pickle'
+    path = resources_path + name
+    if os.path.isfile(path):
+        pickle_in = open(path, "rb")
+        return pickle.load(pickle_in)
+    else:
+        tfidf = TFIDF(Golestan, poem_based)
+        pickle_out = open(path, "wb")
+        pickle.dump(tfidf, pickle_out)
+        return tfidf
