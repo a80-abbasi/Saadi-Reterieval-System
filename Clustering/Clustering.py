@@ -62,8 +62,8 @@ class K_means:
 
 class Clustering:
 
-    def __init__(self):
-        self.tfidf = TFIDF(False, False)
+    def __init__(self, poem_based=False):
+        self.tfidf = TFIDF(False, poem_based)
 
         number_of_clusters = 11
         self.kmeans = K_means(self.tfidf.tfidf_data, number_of_clusters)
