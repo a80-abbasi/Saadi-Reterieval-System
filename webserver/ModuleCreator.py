@@ -8,6 +8,7 @@ from TransfomerSearch import my_transformer
 from Clustering import Clustering
 from LinkAnalysis import LinkAnalysis
 from QueryExpansion import QueryExpansion
+from Classification import Classification
 
 resources_path = '../resources/'
 
@@ -121,4 +122,15 @@ def get_query_expansion():
         pickle.dump(query_extender, pickle_out)
         return query_extender
 
-print(get_transformer(True).search('به نام خداوند جان و خرد'))
+
+def get_classification():
+    name = 'classification.pickle'
+    path = resources_path + name
+    if os.path.isfile(path):
+        pickle_in = open(path, 'rb')
+        return pickle.load(pickle_in)
+    else:
+        classification = Classification()
+        pickle_out = open(path, 'wb')
+        pickle.dump(classification, pickle_out)
+        return classification
