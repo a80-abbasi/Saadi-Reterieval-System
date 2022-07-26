@@ -1,13 +1,11 @@
 import random
 import numpy as np
 from scipy.spatial.distance import cdist  # used to get distance matrix
-
 from ModuleCreator import *
 
 
 def get_distance_matrix(x: np.ndarray, y: np.ndarray) -> np.ndarray:
     return cdist(x, y, 'euclidean') ** 2
-
 
 class K_means:
 
@@ -79,4 +77,4 @@ class Clustering:
         return i, self.clusters[i]
 
     def get_clusters(self):
-        return self.clusters
+        return list(self.clusters)

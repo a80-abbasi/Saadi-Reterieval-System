@@ -7,6 +7,7 @@ from Embedding import my_word2vec
 from TransfomerSearch import my_transformer
 from Clustering import Clustering
 from LinkAnalysis import LinkAnalysis
+from QueryExpansion import QueryExpansion
 
 resources_path = '../resources/'
 
@@ -75,7 +76,6 @@ def get_link_analysis():
         return linkanalyser
 
 
-
 def get_embedding(Golestan=False):
     name = 'word2vec'
     if Golestan:
@@ -106,3 +106,17 @@ def get_transformer(Golestan=False):
         pickle_out = open(path, 'wb')
         pickle.dump(transformer, pickle_out)
         return transformer
+
+
+def get_query_expansion():
+    name = 'transformer'
+    name += '.pickle'
+    path = resources_path + name
+    if os.path.isfile(path):
+        pickle_in = open(path, 'rb')
+        return pickle.load(pickle_in)
+    else:
+        query_extender = QueryExpansion()
+        pickle_out = open(path, 'wb')
+        pickle.dump(query_extender, pickle_out)
+        return query_extender
