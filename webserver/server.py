@@ -1,26 +1,23 @@
 from logging import raiseExceptions
 from flask import Flask, request
 from Elasticsearch import ElasticSearch
-from Boolean import Boolean
-from TFIDF import TFIDF
-from LinkAnalysis import LinkAnalysis
-from Clustering import Clustering
-
+from ModuleCreator import *
 
 PORT = 8080
 DEBUG = True
+ELASTIC_HOST = 'http://localhost:9200/'
 
 app = Flask(__name__)
 
 services = {
-    'elastic': ElasticSearch(url='http://localhost:9200/', index_name='ir-saadi'),
-    'boolean': Boolean(),
-    'tfidf': TFIDF(),
-    # 'transformer':
-    # 'fasttext':
+    'elastic': ElasticSearch(url=ELASTIC_HOST, Golestan=True),
+    'boolean': get_boolean(Golestan=True),
+    'tfidf': get_tfidf(Golestan=True),
+    # 'transformer': get_transformer(Golestan=True),
+    # 'fasttext': get_embedding(Golestan=True),
     # 'classification':,
-    'clustering': Clustering(),
-    'linkanalysis': LinkAnalysis()
+    'clustering': get_clustering(),
+    'linkanalysis': get_link_analysis()
 }
 
 
