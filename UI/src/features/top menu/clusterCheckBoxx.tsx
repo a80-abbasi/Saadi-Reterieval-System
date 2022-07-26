@@ -9,6 +9,8 @@ import {
   setCluster,
   setClusterAnimation,
 } from "../../app/menuReducer";
+import { clustringText, searchText } from "../../logic/controller";
+import { setResult } from "../../app/resultReducer";
 
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -18,6 +20,8 @@ export const ClusterCheckBox = () => {
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
+      // const data = await clustringText("all");
+      // dispatch(setResult(data));
       dispatch(setCluster(true));
       await new Promise((r) => setTimeout(r, 500));
       dispatch(setClusterAnimation(true));
@@ -28,12 +32,11 @@ export const ClusterCheckBox = () => {
   };
   return (
     <Stack
-      sx={{ px: 2,pr:3, bgcolor: "white", borderRadius: 2  }}
+      sx={{ px: 3, pr: 4, bgcolor: "white", borderRadius: 2 }}
       direction="row"
-      
       alignItems="center"
     >
-      <Typography sx={{fontFamily: "Lalezar-Regular"}} > خوشه بندی</Typography>
+      <Typography sx={{ fontFamily: "Lalezar-Regular" }}> خوشه بندی</Typography>
 
       <Checkbox
         icon={<BookmarkBorderIcon />}
