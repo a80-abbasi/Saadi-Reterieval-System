@@ -10,7 +10,7 @@ const buttonList = [
   "classification",
 ];
 export const NormalOptions = () => {
-  const { enginStatus } = useAppSelector(selectMenu);
+  const { enginStatus }: any = useAppSelector(selectMenu);
   const dispatch = useAppDispatch();
 
   const MyButton = ({
