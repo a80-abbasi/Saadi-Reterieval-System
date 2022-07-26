@@ -1,6 +1,6 @@
 from webserver.PreProcess import pre_process
 from webserver.PreProcess import bi_sent_pre_process
-from Utils.Utils import all_data
+from webserver.Utils import all_data
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
 from parsivar import SpellCheck

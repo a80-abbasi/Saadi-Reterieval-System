@@ -1,6 +1,6 @@
 import json
 import requests
-from Utils.Utils import all_data, boostan_data
+from webserver.Utils import all_data, boostan_data
 
 
 class ElasticSearch:
