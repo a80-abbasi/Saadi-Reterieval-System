@@ -2,6 +2,7 @@ import os
 import argparse
 from logging import raiseExceptions
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from Elasticsearch import ElasticSearch
 from ModuleCreator import *
 from TFIDF import get_tfidf
@@ -14,6 +15,9 @@ ELASTIC_HOST = 'http://localhost:9200/'
 
 # web server app
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 # build a directory to save files
 path = '../resources/saved-models/'
@@ -48,6 +52,7 @@ print('service initialization done!')
 #   below are provided URLs         #
 #####################################
 @app.route("/search", methods=['GET'])
+@cross_origin()
 def search():
     try:
         method = request.args.get('method')
@@ -68,6 +73,7 @@ def search():
 
 
 @app.route("/clustering", methods=['GET'])
+@cross_origin()
 def clustering():
     try:
         method = request.args.get('method')
@@ -91,6 +97,7 @@ def clustering():
 
 
 @app.route("/linkanalysis", methods=['GET'])
+@cross_origin()
 def linkanalysis():
     try:
         method = request.args.get('method')
@@ -110,6 +117,7 @@ def linkanalysis():
 
 
 @app.route("/expansion", methods=['GET'])
+@cross_origin()
 def query_expansion():
     try:
         query = request.args.get('query')
@@ -126,6 +134,7 @@ def query_expansion():
 
 
 @app.route("/classification", methods=['GET'])
+@cross_origin()
 def classification():
     return 'under developement!'
 
