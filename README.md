@@ -1,8 +1,10 @@
 # Saadi's Poems Reterieval System
 
-<img src="./UI/src/text.png" style="display:block; margin-left:auto; margin-right:auto">
+<p align="center">
+<img src="./UI/src/text.png" width="33%">
+</p>
 
-This is a reterieval system for saadi's poems.
+This is a reterieval system for saadi's poems. It consists of two major component, a web server and a UI. You can find the documentation of webserver [here](https://github.com/IR1401-Spring-Final-Projects/Saadi1401-5_23/tree/main/webserver#server) and UI [here](https://github.com/IR1401-Spring-Final-Projects/Saadi1401-5_23/tree/main/UI).
 
 |Member|SNumber|
 |:---:|:---:|
