@@ -24,3 +24,6 @@ class LinkAnalysis:
 
     def get_authority_hubs_results(self, k=10):
         return list(self.tfidf.data.poem[self.hubs_max_idx[:k]])
+
+
+

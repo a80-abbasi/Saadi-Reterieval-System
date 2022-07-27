@@ -2,7 +2,6 @@ import os.path
 import pickle
 
 from Boolean import Boolean
-from TFIDF import TFIDF
 from Embedding import my_word2vec
 from TransfomerSearch import my_transformer
 from Clustering import Clustering

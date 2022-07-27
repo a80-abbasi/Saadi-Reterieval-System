@@ -3,8 +3,6 @@ from Utils import all_data
 from Utils import boostan_data
 import numpy as np
 from PreProcess import pre_process, sent_pre_process
-import itertools
-
 
 class my_transformer:
     def __init__(self, Golestan=False):
