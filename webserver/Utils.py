@@ -69,4 +69,6 @@ poem_based_all = pd.concat([poem_based_boostan, poem_based_golestan], ignore_ind
 beit_based_all = pd.concat([boostan_data, golestan_data], ignore_index=True)
 
 def get_cosine(v1,v2):
+    if np.linalg.norm(v1) == 0 or np.linalg.norm(v2) == 0:
+        return 0
     return np.inner(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))

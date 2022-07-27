@@ -24,8 +24,8 @@ services = {
     'elastic': ElasticSearch(url=ELASTIC_HOST, Golestan=True),
     'boolean': get_boolean(Golestan=True),
     'tfidf': get_tfidf(Golestan=True),
-    # 'transformer': get_transformer(Golestan=True),
-    # 'fasttext': get_embedding(Golestan=True),
+    'transformer': get_transformer(Golestan=True),
+    'fasttext': get_embedding(Golestan=True),
     'classification': get_classification(),
 
     'clustering': get_clustering(),
@@ -94,7 +94,7 @@ def linkanalysis():
         elif method == 'page rank':
             output = {'nodes': service.get_pagerank_results(k=n)}
         else:
-            raiseExceptions()
+            output = 'Error: method must be one of \"hits\" or \"page rank\"'
     except Exception as e:
         output = f'Error: {str(e)}'
 

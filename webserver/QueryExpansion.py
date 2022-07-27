@@ -27,7 +27,7 @@ class QueryExpansion:
         max_count = 0
         best_word = ''
         for i in range(len(bi_words)):
-            if bi_words[i].split()[0] == query:
+            if bi_words[i].split()[0] == query[-1]:
                 if self.bi_counter[i] > max_count:
                     best_word = bi_words[i].split()[1]
                     max_count = self.bi_counter[i]

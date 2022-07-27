@@ -60,17 +60,19 @@ class my_word2vec:
                 weight_sum += weight
             except:
                 pass
-        return vector / weight_sum
+        if weight_sum != 0:
+            vector /= weight_sum
+        return vector
 
-    def search(self, sentence, k=10):
+    def search(self, query, k=10):
         tops = list()
         for line in self.data:
-            similarity = self.get_similarity(sentence, line)
+            similarity = self.get_similarity(query, line)
             if not np.isnan(similarity):
                 tops.append([similarity, line])
         tops = np.array(tops)
         args = np.argsort(tops[:, 0])[::-1]
-        return list(tops[args[:k]])
+        return list(tops[args[:k], 1])
 
     def get_vec(self, doc):
         return self.model.infer_vector(pre_process(doc)[0])
