@@ -38,8 +38,9 @@ We have different classes which you can find out how to use them below:
 - Elasticsearch.py
 - Boolean.py
 - TFIDF.py
+- TransformerSearch.py
 - Clustering.py
-- LinkAnalysis.py
+- LinkAnalysis.p
 
 ### Elasticsearch.py
 On initialization, this module will build an index with name 'saadi-ir' on elastic cluster and index poems to it. Then you will be able to search for your poem.
@@ -68,6 +69,10 @@ On initialization, this module creates a tf-idf matrix with Boostan Beits using 
 - get_vectors: returns tf-idf Matrix of its data
 - search: returns k most similar datapoints to query based on cos of their angle (TF-IDF Retreival)
 
+
+### TransformerSearch.py
+Uses a transformer based model from 'HooshvareLab/bert-fa-zwnj-base' on Golestan and Boostan data
+and with `search` you can k most similar Beits to your query Beit based on cosine of their vectors' angle.
 
 ### Clustering.py
 
