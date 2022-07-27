@@ -82,6 +82,15 @@ Initializes a K-means module and clusters Boostan Beits based into 11 clusters (
 - get_clusters: returns a dictionary of 11 classes and poems in each.
 - predict_cluster: returns the closest cluster and poems in it to the query.
 
+### Classification.py
+
+Initializes a classifier (sklearn LinearSVC with balanced class_weight as default) and tfidf-vectorizer to predict a poem Babs in Boostan.
+The classifier and tfidf-vectorizer can be changed by passing them to init function.
+
+- ``search``: get a query (i.e a poem) and return the predicted bab.
+- ``fit``: get train poems and their corresponding labels and fit tfidf-vectorizer and classifier.
+- ``evaluation``: evaluate classifier model given list of poems and their corresponding labels.
+
 
 ### LinkAnalysis.py
 

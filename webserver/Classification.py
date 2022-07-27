@@ -21,17 +21,17 @@ Boostan_Babs = [
 
 class Classification:
 
-    def __init__(self):
-        self.vectorizer = TfidfVectorizer(strip_accents='unicode',
-                                          analyzer='char',
-                                          preprocessor=self._preprocessor,
-                                          ngram_range=(2, 6),
-                                          min_df=4,
-                                          max_features=15000)
+    def __init__(self, classifier=None, voctorizer=None):
+        self.vectorizer = voctorizer if voctorizer else TfidfVectorizer(strip_accents='unicode',
+                                                                        analyzer='char',
+                                                                        preprocessor=self._preprocessor,
+                                                                        ngram_range=(2, 6),
+                                                                        min_df=4,
+                                                                        max_features=15000)
         self.data = boostan_data
         self.X_train = boostan_data['poem']
         self.y_train = boostan_data['chapter']
-        self.classifier = LinearSVC(class_weight='balanced')
+        self.classifier = classifier if classifier else LinearSVC(class_weight='balanced')
         self.fit(self.X_train, self.y_train)
 
     def _preprocessor(self, x):
@@ -46,4 +46,5 @@ class Classification:
         self.classifier.fit(X_train_tfidf, y_train)
 
     def evaluation(self, X_test, y_test):
-        return classification_report(y_test, self.classifier.predict(X_test), output_dict=True)
+        y_pred = self.classifier.predict(self.vectorizer.transform(X_test))
+        return classification_report(y_test, y_pred, output_dict=True)
