@@ -4,6 +4,20 @@ from PreProcess import sent_pre_process
 from sklearn.metrics import classification_report
 from Utils import boostan_data
 
+Boostan_Babs = [
+    'در نیایش خداوند',
+    'باب اول در عدل و تدبیر و رای',
+    'باب دوم در احسان',
+    'باب سوم در عشق و مستی و شور',
+    'باب چهارم در تواضع',
+    'باب پنجم در رضا',
+    'باب ششم در قناعت',
+    'باب هفتم در عالم تربیت',
+    'باب هشتم در شکر بر عافیت',
+    'باب نهم در توبه و راه صواب',
+    'باب دهم در مناجات و ختم کتاب'
+]
+
 
 class Classification:
 
@@ -23,12 +37,13 @@ class Classification:
     def _preprocessor(self, x):
         return ' '.join(sent_pre_process(x, normalize=False, remove_stopwords=True, lemmatize=False))
 
-    def search(self, query, k):
-        return self.classifier.predict(self.vectorizer.transform(query))
+    def search(self, query, k=1):
+        i = self.classifier.predict(self.vectorizer.transform([query]))[0]
+        return i, Boostan_Babs[i]
 
     def fit(self, X_train, y_train):
         X_train_tfidf = self.vectorizer.fit_transform(X_train)
         self.classifier.fit(X_train_tfidf, y_train)
 
     def evaluation(self, X_test, y_test):
-        return classification_report(y_test, self.predict(X_test), output_dict=True)
+        return classification_report(y_test, self.classifier.predict(X_test), output_dict=True)
