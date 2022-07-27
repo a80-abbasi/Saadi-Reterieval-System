@@ -4,7 +4,6 @@ from Utils import boostan_data, beit_based_all, poem_based_boostan, poem_based_a
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-
 class Boolean:
     def __init__(self, Golestan=False, poem_based=False):
         if poem_based:
@@ -29,7 +28,7 @@ class Boolean:
         return self.bool_data
 
     def search(self, query, k=10):
-        query_bool = self.tf.transform([query]).toarray()[0]
+        query_bool = self.tf.transform([query]).toarray()[0].astype(bool)
         scores = np.dot(self.bool_data, query_bool)  # their inner products
         args = np.argsort(scores)[::-1]
         k_args = args[:k]
