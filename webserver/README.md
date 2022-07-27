@@ -98,3 +98,10 @@ creates an adjacency matrix from Boostan Beits and runs Pagerank and HITS algori
 
 - get_pagerank_results: return k most important Beits of Boostan based on Pagerank algorithm.
 - get_authority_hubs_results: return k most important Beits of Boostan based on HITS algorithm.
+
+### QueryExpansion.py
+
+This module will handle our algorithm for query expansin. In order to do so we first check the spell of query using Parsivar package. Then will try to predicte the next word of query. For prediction we use a bigram language model and choose the world that is most probable to come with the last term of query.
+
+- `correct_spell_error(query)`: this function will get a query and return the correct spelling of that
+- `suggest(query)`: this method will return the prediction of next word
