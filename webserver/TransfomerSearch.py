@@ -27,5 +27,6 @@ class my_transformer:
         indexes = np.argsort(sims)[::-1][:k]
         tops = list()
         for ind in indexes:
-            tops.append((sims[ind], self.data[self.processed_data_index[ind][1]]))
+            # tops.append((sims[ind], self.data[self.processed_data_index[ind][1]]))
+            tops.append(self.data[self.processed_data_index[ind][1]])
         return tops

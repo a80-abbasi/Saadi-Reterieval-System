@@ -39,7 +39,7 @@ class Classification:
 
     def search(self, query, k=1):
         i = self.classifier.predict(self.vectorizer.transform([query]))[0]
-        return i, Boostan_Babs[i]
+        return [int(i), Boostan_Babs[i]]
 
     def fit(self, X_train, y_train):
         X_train_tfidf = self.vectorizer.fit_transform(X_train)
