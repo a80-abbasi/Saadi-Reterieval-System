@@ -51,8 +51,6 @@ es = ElasticSearch(url='http://localhost:9200')
 es.search('باید اول به تو گفتن که چنین خوب چرایی')
 ```
 
----
-
 ### Boolean.py
 
 On initialization, this module creates a boolean matrix with Boostan Beits.
@@ -61,7 +59,6 @@ On initialization, this module creates a boolean matrix with Boostan Beits.
 - get_vectors: returns Boolean Matrix of its instance
 - search: returns k most similar datapoints to query (Boolean Retreival)
 
----
 
 ### TFIDF.py  
 
@@ -71,7 +68,6 @@ On initialization, this module creates a tf-idf matrix with Boostan Beits using 
 - get_vectors: returns tf-idf Matrix of its data
 - search: returns k most similar datapoints to query based on cos of their angle (TF-IDF Retreival)
 
----
 
 ### Clustering.py
 
@@ -81,7 +77,6 @@ Initializes a K-means module and clusters Boostan Beits based into 11 clusters (
 - get_clusters: returns a dictionary of 11 classes and poems in each.
 - predict_cluster: returns the closest cluster and poems in it to the query.
 
----
 
 ### LinkAnalysis.py
 
