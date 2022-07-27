@@ -15,13 +15,14 @@ import { setResult } from "../../app/resultReducer";
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export const ClusterCheckBox = () => {
-  const menu:any = useAppSelector(selectMenu);
+  const menu: any = useAppSelector(selectMenu);
   const dispatch = useAppDispatch();
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      // const data = await clustringText("all");
-      // dispatch(setResult(data));
+      const data = await clustringText("all");
+      console.log("cluster result: ", data);
+      dispatch(setResult(data));
       dispatch(setCluster(true));
       await new Promise((r) => setTimeout(r, 500));
       dispatch(setClusterAnimation(true));

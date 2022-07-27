@@ -1,15 +1,16 @@
 import Box from "@mui/material/Box";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { PoetCluster } from "./poetCluster";
 import { ClusterModal } from "./clusterModal";
-import { useAppDispatch } from "../../app/hooks";
-import { setIsOpen, setModalData } from "../../app/resultReducer";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectResult, setIsOpen, setModalData } from "../../app/resultReducer";
 export const ClusterGrid = () => {
-  const ls = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const dispatch = useAppDispatch();
+  const { result }: any = useAppSelector(selectResult);
 
+  const dispatch = useAppDispatch();
+  console.log("shhet")
   return (
     <Stack sx={{ p: 1 }} alignItems="center">
       <Grid
@@ -19,13 +20,20 @@ export const ClusterGrid = () => {
         justifyContent="center"
         alignItems="center"
       >
-        {ls.map((e) => {
-          return (
-            <Grid item spacing={2}>
-              <PoetCluster onClick={() => dispatch(setIsOpen(true))} />
-            </Grid>
-          );
-        })}
+        {result &&
+          Object.keys(result).map((e) => {
+            return (
+              <Grid item spacing={2}>
+                <PoetCluster
+                  data={result[e]}
+                  onClick={(data:any) => {
+                    dispatch(setModalData(data));
+                    dispatch(setIsOpen(true));
+                  }}
+                />
+              </Grid>
+            );
+          })}
       </Grid>
     </Stack>
   );

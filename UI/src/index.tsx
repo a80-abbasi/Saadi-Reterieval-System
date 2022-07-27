@@ -10,6 +10,11 @@ import './assets/fonts/IranNastaliq.ttf';
 import './assets/fonts/B-NAZANIN.ttf';
 
 
+import './assets/fonts/IranNastaliq_1.ttf';
+import './assets/fonts/Dima Shekasteh.ttf';
+import './assets/fonts/Shekasteh V2.001.ttf';
+
+
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);

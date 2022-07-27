@@ -3,9 +3,15 @@ import { useAppSelector } from "../../app/hooks";
 import { selectResult } from "../../app/resultReducer";
 import { SinglePoet } from "./singlePoet";
 
-export const PoetCluster = ({ onClick }: { onClick?: any }) => {
-  const { result } = useAppSelector(selectResult);
-
+export const PoetCluster = ({
+  onClick,
+  data = ["23233", "323dff"],
+}: {
+  onClick?: any;
+  data?: any;
+}) => {
+  // const { result } = useAppSelector(selectResult);
+  // console.log("data: ", data);
   return (
     <Box display="flex" justifyContent="center" alignItems="center" width={700}>
       <Stack
@@ -17,13 +23,18 @@ export const PoetCluster = ({ onClick }: { onClick?: any }) => {
           width: "100%",
         }}
       >
-        {result.map((item) => {
-          return <SinglePoet item={item} />;
-        })}
+        {/* <Typography>{JSON.stringify(data)}sdad</Typography> */}
+        {data &&
+          data.slice(0, 5).map((item:string) => {
+            return <SinglePoet item={item} />;
+          })}
         {onClick ? (
-          <Button variant="contained" color="success" onClick={onClick}>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => onClick(data)}
+          >
             <Typography sx={{ fontFamily: "Lalezar-Regular" }}>
-              {" "}
               مرور همه ابیات
             </Typography>{" "}
           </Button>

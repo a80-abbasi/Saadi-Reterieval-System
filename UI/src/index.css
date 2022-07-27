@@ -29,3 +29,24 @@ code {
     url("./assets/fonts/B-NAZANIN.ttf") format("truetype");
   /* font-weight: bold; */
 }
+
+@font-face {
+  font-family: "Dima Shekasteh";
+  src: local("Dima Shekasteh"),
+    url("./assets/fonts/Dima Shekasteh.ttf") format("truetype");
+  /* font-weight: bold; */
+}
+
+@font-face {
+  font-family: "IranNastaliq_1";
+  src: local("IranNastaliq_1"),
+    url("./assets/fonts/IranNastaliq_1.ttf") format("truetype");
+  /* font-weight: bold; */
+}
+
+@font-face {
+  font-family: "Shekasteh V2.001";
+  src: local("Shekasteh V2.001"),
+    url("./assets/fonts/Shekasteh V2.001.ttf") format("truetype");
+  /* font-weight: bold; */
+}

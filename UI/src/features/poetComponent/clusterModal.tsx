@@ -51,8 +51,8 @@ export function ClusterModal() {
         <Fade in={resultState.isOpen}>
           <Box sx={style}>
             <Stack spacing={1} >
-              {[...Array(30)].map((e) => (
-                <SinglePoet item={{ text: `${e}` }} />
+              {resultState.modalData.map((e:any) => (
+                <SinglePoet item={ `${e}` } />
               ))}
             </Stack>
           </Box>

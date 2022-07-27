@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
 export interface ResultState {
-  result: [];
-  modalData: [];
+  result: any;
+  modalData: any;
   isOpen: boolean;
 }
 

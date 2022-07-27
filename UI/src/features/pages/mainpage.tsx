@@ -11,13 +11,15 @@ import background from "../../bg.png";
 import text from "../../text.png";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectMenu } from "../../app/menuReducer";
-import { selectResult } from "../../app/resultReducer";
+import { selectResult, setIsOpen, setModalData } from "../../app/resultReducer";
 import { ClusterGrid } from "../poetComponent/clusterGrid";
 import { ClusterModal } from "../poetComponent/clusterModal";
 import { LinkAnalysis } from "../top menu/link";
+import { Typography } from "@mui/material";
 export const MainPage = () => {
   const menu: any = useAppSelector(selectMenu);
   const resultState = useAppSelector(selectResult);
+  const dispatch = useAppDispatch();
   // const [hideMenu, setHideMenu] = React.useState(false);
 
   return (
@@ -49,10 +51,29 @@ export const MainPage = () => {
             </div>
           )}
         </Stack>
-        {menu.clusterAnimation && resultState.result.length > 0 ? (
+         {/* <Typography> {Object.keys(resultState.result).length} </Typography> */}
+        {/* <Typography> {JSON.stringify(resultState.result)} </Typography>  */}
+
+        {menu.clusterAnimation &&
+        !(resultState.result instanceof Array) &&
+        Object.keys(resultState.result).length > 1 ? (
           <ClusterGrid />
-        ) : resultState.result.length > 0 ? (
-          <PoetCluster />
+        ) : menu.clusterAnimation && resultState.result instanceof Array ? (
+          <PoetCluster
+            data={resultState.result}
+            onClick={(data: any) => {
+              dispatch(setModalData(data));
+              dispatch(setIsOpen(true));
+            }}
+          />
+        ) : !menu.clusterAnimation && resultState.result instanceof Array ? (
+          <PoetCluster
+            data={resultState.result}
+            onClick={(data: any) => {
+              dispatch(setModalData(data));
+              dispatch(setIsOpen(true));
+            }}
+          />
         ) : (
           <Help />
         )}

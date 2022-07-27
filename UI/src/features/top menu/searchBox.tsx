@@ -20,41 +20,14 @@ export function SearchBox() {
   const search = async () => {
     let result;
     if (menu.cluster) {
-      // const data = await clustringText("search" , menu.search)
-      result = [
-        {
-          text: "جواب با سرچ کردن",
-        },
-        {
-          text: "جواب با سرچ کردن",
-        },
-        {
-          text: "جواب با سرچ کردن",
-        },
-        {
-          text: "جواب با سرچ کردن",
-        },
-        {
-          text: "جواب با سرچ کردن",
-        },
-      ];
+      const data = await clustringText("search", menu.search);
+      console.log("cluster search: ", menu.search, data["class"].slice(0, 10));
+      result = data["class"].slice(0, 10);
     } else {
-      if (menu.enginStatus == "Page Rank" || menu.enginStatus == "HITS") return;
-      // const data = await searchText(menu.search , menu.enginStatus)
-      result = [
-        {
-          text: "با جوانی سر خوش است این پیر بی تدبیر را جهل باشد با جوانان پنجه کردن پیر را",
-        },
-        {
-          text: "روز بازار جوانی پنج روزی بیش نیست نقد را باش اي پسر کآفت بود تأخیر را       ",
-        },
-        {
-          text: "اي که گفتی دیده از دیدار بت رویان بدوز هر چه گویی چاره دانم کرد جز تقدیر را",
-        },
-        {
-          text: "زهد پیدا کفر پنهان بود چندین روزگار  پرده از سر برگرفتیم آن همه ی تزویر را",
-        },
-      ];
+      if (menu.enginStatus === "page rank" || menu.enginStatus === "hits") return;
+      const data = await searchText(menu.search , menu.enginStatus)
+      console.log("normal search: ",menu.search ,menu.enginStatus, data)
+      result = data.result
     }
 
     dispatch(setResult(result));

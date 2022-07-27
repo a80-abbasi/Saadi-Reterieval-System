@@ -12,8 +12,8 @@ export interface MenuState {
     | "transformer"
     | "elastic"
     | "classification"
-    | "HITS"
-    | "Page Rank";
+    | "hits"
+    | "page rank";
 }
 
 const initialState: MenuState = {

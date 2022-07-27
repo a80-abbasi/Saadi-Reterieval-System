@@ -1,9 +1,11 @@
 import { Typography, Button, Box, Stack } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectMenu, setEngineStatus } from "../../app/menuReducer";
-const buttonList = ["HITS", "Page Rank"];
+import { setResult } from "../../app/resultReducer";
+import { linkanalysisText } from "../../logic/controller";
+const buttonList = ["hits", "page rank"];
 export const LinkAnalysis = () => {
-  const { enginStatus }:any = useAppSelector(selectMenu);
+  const { enginStatus }: any = useAppSelector(selectMenu);
   const dispatch = useAppDispatch();
 
   const MyButton = ({
@@ -36,8 +38,18 @@ export const LinkAnalysis = () => {
       </Button>
     );
   };
-  const changeLink = (type: string) => {
-    dispatch(setEngineStatus(type));
+  const changeLink = async (type: string) => {
+    try {
+      const data = await linkanalysisText(type);
+      if (type === "hits") {
+        dispatch(setResult(data["authority"]));
+      } else {
+        dispatch(setResult(data["nodes"]));
+      }
+      dispatch(setEngineStatus(type));
+    } catch (e) {
+      console.log("error: ", e);
+    }
   };
   return (
     <Box
