@@ -1,4 +1,5 @@
 import os
+import argparse
 from logging import raiseExceptions
 from flask import Flask, request
 from Elasticsearch import ElasticSearch
@@ -19,9 +20,14 @@ path = '../resources/saved-models/'
 if not os.path.exists(path):
     os.makedirs(path)
 
+# input arguments
+parser = argparse.ArgumentParser()
+parser.add_argument("--e", action="store_true")
+args = parser.parse_args()
+elastic = args.e
+
 # services of the web server
 services = {
-    'elastic': ElasticSearch(url=ELASTIC_HOST, Golestan=True),
     'boolean': get_boolean(Golestan=True),
     'tfidf': get_tfidf(Golestan=True),
     'transformer': get_transformer(Golestan=True),
@@ -32,6 +38,8 @@ services = {
     'linkanalysis': get_link_analysis(),
     'expansion': get_query_expansion()
 }
+if elastic:
+    services['elastic'] = ElasticSearch(url=ELASTIC_HOST, Golestan=True)
 
 print('service initialization done!')
 
