@@ -38,8 +38,9 @@ We have different classes which you can find out how to use them below:
 - Elasticsearch.py
 - Boolean.py
 - TFIDF.py
+- TransformerSearch.py
 - Clustering.py
-- LinkAnalysis.py
+- LinkAnalysis.p
 
 ### Elasticsearch.py
 On initialization, this module will build an index with name 'saadi-ir' on elastic cluster and index poems to it. Then you will be able to search for your poem.
@@ -69,6 +70,10 @@ On initialization, this module creates a tf-idf matrix with Boostan Beits using 
 - search: returns k most similar datapoints to query based on cos of their angle (TF-IDF Retreival)
 
 
+### TransformerSearch.py
+Uses a transformer based model from 'HooshvareLab/bert-fa-zwnj-base' on Golestan and Boostan data
+and with `search` you can k most similar Beits to your query Beit based on cosine of their vectors' angle.
+
 ### Clustering.py
 
 Initializes a K-means module and clusters Boostan Beits based into 11 clusters (assuming to be close to their Babs).
@@ -93,3 +98,10 @@ creates an adjacency matrix from Boostan Beits and runs Pagerank and HITS algori
 
 - get_pagerank_results: return k most important Beits of Boostan based on Pagerank algorithm.
 - get_authority_hubs_results: return k most important Beits of Boostan based on HITS algorithm.
+
+### QueryExpansion.py
+
+This module will handle our algorithm for query expansin. In order to do so we first check the spell of query using Parsivar package. Then will try to predicte the next word of query. For prediction we use a bigram language model and choose the world that is most probable to come with the last term of query.
+
+- `correct_spell_error(query)`: this function will get a query and return the correct spelling of that
+- `suggest(query)`: this method will return the prediction of next word

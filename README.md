@@ -10,7 +10,7 @@ This is a reterieval system for saadi's poems. It consists of two major componen
 |:---:|:---:|
 |Mohammad Javad Hezareh|98101074
 |Ali Abbasi|98105879
-|Matin Shoja|
-|Maziar Shamsipour|
-|Yasin Moosavi|
-|Amir Ali Ebrahimzadeh|
+|Matin Shoj|98101809
+|Maziar Shamsipour|98101844
+|Yasin Moosavi|98110351
+|Amir Ali Ebrahimzadeh|98105546
