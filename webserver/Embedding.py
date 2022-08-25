@@ -36,19 +36,32 @@ class my_word2vec:
         self.idf_dataframe.head()
         x = pre_process(self.data, remove_stopwords=True)
         self.model = Word2Vec(x)
+        self.embeddings = np.array(self._cal_embeddings())
 
     def _analyzer(self, x):
         return sent_pre_process(x, remove_stopwords=True)
 
+    def _cal_embeddings(self):
+        result = []
+        for line in self.data:
+            pre_processed_line = sent_pre_process(line, remove_stopwords=True)
+            line_vector = self.word_summation(pre_processed_line)
+            if  np.linalg.norm(line_vector) != 0:
+                line_vector /= np.linalg.norm(line_vector)
+            result.append(line_vector)
+        return result
+
     def get_most_similar_word_to_word(self, word):
         return self.model.wv.most_similar(word)
 
-    def get_similarity(self, query, line):
+    def get_similarity(self, query):
         pre_processed_query = sent_pre_process(query, remove_stopwords=True)
-        pre_processed_line = sent_pre_process(line, remove_stopwords=True)
         query_vector = self.word_summation(pre_processed_query)
-        line_vector = self.word_summation(pre_processed_line)
-        return get_cosine(query_vector, line_vector)
+        if  np.linalg.norm(query_vector) != 0:
+            query_vector /= np.linalg.norm(query_vector)
+        # line_vector = self.embeddings[i]
+        return query_vector
+        # return get_cosine(query_vector, line_vector)
 
     def word_summation(self, sent):
         vector = np.zeros(self.model.wv.vector_size, dtype=np.float64)
@@ -65,14 +78,19 @@ class my_word2vec:
         return vector
 
     def search(self, query, k=10):
-        tops = list()
-        for line in self.data:
-            similarity = self.get_similarity(query, line)
-            if not np.isnan(similarity):
-                tops.append([similarity, line])
-        tops = np.array(tops)
-        args = np.argsort(tops[:, 0])[::-1]
-        return list(tops[args[:k], 1])
+        # tops = list()
+        q = self.get_similarity(query)
+
+        sims = self.embeddings @ q
+        idx = np.argsort(sims)[::-1]
+        return self.data[idx[:k]]
+        # for i in range(len(self.data)):
+        #     similarity = self.get_similarity(query, i)
+        #     if not np.isnan(similarity):
+        #         tops.append([similarity, self.data[i]])
+        # tops = np.array(tops)
+        # args = np.argsort(tops[:, 0])[::-1]
+        # return list(tops[args[:k], 1])
 
     def get_vec(self, doc):
         return self.model.infer_vector(pre_process(doc)[0])

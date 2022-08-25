@@ -10,7 +10,7 @@ from TFIDF import get_tfidf
 
 # constants
 PORT = 8080
-DEBUG = True
+# DEBUG = False
 ELASTIC_HOST = 'http://localhost:9200/'
 
 # web server app
@@ -27,8 +27,10 @@ if not os.path.exists(path):
 # input arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("--e", action="store_true")
+parser.add_argument("--d", action="store_true")
 args = parser.parse_args()
 elastic = args.e
+DEBUG = args.d
 
 # services of the web server
 services = {

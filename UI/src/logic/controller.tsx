@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clusteringApi, linkanalysisApi, searchApi } from "./apis";
+import { clusteringApi, expansionAPi, linkanalysisApi, searchApi } from "./apis";
 export const searchText = async (text: string, type: string) => {
   let n=10
   const res = await axios.get(searchApi, {
@@ -26,7 +26,7 @@ export const linkanalysisText = async (type: string) => {
   return res.data;
 };
 export const expansionText = async (query: string) => {
-  const res = await axios.get(linkanalysisApi, {
+  const res = await axios.get(expansionAPi, {
     params: { query: query, },
   });
   return res.data;

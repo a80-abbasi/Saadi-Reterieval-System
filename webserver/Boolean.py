@@ -28,7 +28,7 @@ class Boolean:
         return self.bool_data
 
     def search(self, query, k=10):
-        query_bool = self.tf.transform([query]).toarray()[0].astype(bool)
+        query_bool = self.tf.transform([query]).toarray()[0]#.astype(bool)
         scores = np.dot(self.bool_data, query_bool)  # their inner products
         args = np.argsort(scores)[::-1]
         k_args = args[:k]

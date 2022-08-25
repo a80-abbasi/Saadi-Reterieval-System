@@ -66,7 +66,7 @@ export const MainPage = () => {
               dispatch(setIsOpen(true));
             }}
           />
-        ) : !menu.clusterAnimation && resultState.result instanceof Array ? (
+        ) : !menu.clusterAnimation && resultState.result instanceof Array && resultState.result.length> 0 ? (
           <PoetCluster
             data={resultState.result}
             onClick={(data: any) => {
